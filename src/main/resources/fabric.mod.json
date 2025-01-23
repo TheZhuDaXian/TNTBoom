@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "tntboom",
+	"version": "${version}",
+	"name": "TNT Boom",
+	"description": "每隔一定时间在玩家脚下生成TNT！\n§e特性：\n§7- §a使用Boss血条显示倒计时\n§7- §a可通过指令自定义生成间隔\n§7- §a可自定义TNT引信时间",
+	"authors": [
+		"TheZhuDaXian"
+	],
+	"contact": {
+		"homepage": "https://github.com/TheZhuDaXian",
+		"sources": "https://github.com/TheZhuDaXian/TNTBoom"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/tntboom/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"name.tntboom.TNTBoom"
+		],
+		"client": [
+			"name.tntboom.TNTBoomClient"
+		],
+		"fabric-datagen": [
+			"name.tntboom.TNTBoomDataGenerator"
+		]
+	},
+	"mixins": [
+			"tntboom.mixins.json"
+		],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
