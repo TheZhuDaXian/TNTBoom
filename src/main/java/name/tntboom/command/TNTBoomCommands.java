@@ -1,6 +1,7 @@
 package name.tntboom.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
