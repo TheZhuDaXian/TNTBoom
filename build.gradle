@@ -3,7 +3,16 @@ plugins {
 	id 'maven-publish'
 }
 
-version = project.mod_version
+// 获取版本号函数
+def getVersionName() {
+    def tagName = System.getenv("GITHUB_REF")
+    if (tagName == null) {
+        return project.mod_version
+    }
+    return tagName.replaceAll("refs/tags/v", "")
+}
+
+version = getVersionName()
 group = project.maven_group
 
 base {
@@ -59,8 +68,8 @@ java {
 
 def dateFormat = new Date().format('yyyyMMdd')
 
-tasks.named('jar') {
-    archiveFileName = "tntboom-${version}-${dateFormat}.jar"
+tasks.named('remapJar') {
+    archiveFileName = "${project.archives_base_name}-${version}-${dateFormat}.jar"
 }
 
 jar {
