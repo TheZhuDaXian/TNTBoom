@@ -30,23 +30,32 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
         
+      - name: Get Version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+        
       - name: Create Release
+        id: create_release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: build/libs/*.jar
-          name: TNT Boom ${{ github.ref_name }}
+          tag_name: ${{ github.ref }}
+          release_name: TNT Boom ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+          files: |
+            build/libs/*-${{ env.VERSION }}*.jar
           body: |
-            # TNT Boom ${{ github.ref_name }}
+            # TNT Boom ${{ env.VERSION }}
             
             ## 🚀 更新内容
+            - 版本 ${{ env.VERSION }} 发布
             
             ## 📥 下载
-            - [TNTBoom-${{ github.ref_name }}.jar](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/tntboom-${{ github.ref_name }}-*.jar)
+            从上方 Assets 下载 jar 文件
             
             ## ⚙️ 要求
             - Minecraft 1.20.1
             - Fabric Loader 0.16.10+
             - Fabric API
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
