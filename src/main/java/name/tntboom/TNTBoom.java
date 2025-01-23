@@ -20,10 +20,7 @@ public class TNTBoom implements ModInitializer {
     public void onInitialize() {
         LOGGER.info("TNT爆炸模组已启动!");
         
-        // 注册命令 - 使用新的 v2 API
         CommandRegistrationCallback.EVENT.register(TNTBoomCommands::register);
-        
-        // 注册事件
         ServerTickEvents.END_SERVER_TICK.register(eventHandler::onServerTick);
         ServerLifecycleEvents.SERVER_STARTED.register(TNTBossBar::init);
     }

@@ -1,7 +1,9 @@
 package name.tntboom.config;
 
 public class ModConfig {
+    // 默认10秒生成一次TNT
     private static int intervalSeconds = 10;
+    // 默认3秒后爆炸 (60 ticks)
     private static int fuseTicks = 60;
     
     public static int getIntervalSeconds() {
